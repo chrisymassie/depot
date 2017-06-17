@@ -5,6 +5,7 @@
 
 %h1 Your Pragmatic Catalog
 
+
 - cache @products do
   - @products.each do |product|
     - cache product do
@@ -15,4 +16,4 @@
         = sanitize(product.description)
         .price_line
           %span.price
-            = product.price
+            = number_to_currency(product.price)
