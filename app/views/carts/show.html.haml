@@ -1,14 +1,31 @@
 %p#notice= notice
 
-%h2 Your Pragmatic Cart
+%h2 Your Cart
 
-%ul
+%table
   - @cart.line_items.each do |item|
-    %li
-      = item.quantity
-      &times;
-      = item.product.title
+    %tr
+      %td
+        = item.quantity
+        &times;
+        = item.product.title
+      %td.item_price
+        = number_to_currency(item.total_price)
+  %tr.total_line
+    %td
+      Total
+    %td.total_cell
+      = number_to_currency(@cart.total_price)
+
+-# %ul
+-#   - @cart.line_items.each do |item|
+-#     %li
+-#       = item.quantity
+-#       &times;
+-#       = item.product.title
+
+= button_to 'Empty cart', @cart, method: :delete, data: {confirm: 'Are you sure?'}
 
 = link_to 'Edit', edit_cart_path(@cart)
 \|
-= link_to 'Back', carts_path
+= link_to 'Back', store_index_path # edited to go back to catalog, not cart list
