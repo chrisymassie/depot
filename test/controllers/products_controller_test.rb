@@ -1,13 +1,21 @@
+#---
+# Excerpted from "Agile Web Development with Rails 5",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material,
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/rails5 for more book information.
+#---
 require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @product = products(:one)
     @update = {
-      title: 'Lorem Ipsum',
+      title:       'Lorem Ipsum',
       description: 'Wibbles are fun!',
-      image_url: 'lorem.jpg',
-      price: 19.95
+      image_url:   'lorem.jpg',
+      price:       19.95
     }
   end
 
@@ -45,9 +53,10 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "can't delete product in cart" do
-    assert_difference('Product.count',0) do
+    assert_difference('Product.count', 0) do
       delete product_url(products(:two))
     end
+
     assert_redirected_to products_url
   end
 
